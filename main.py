@@ -1,6 +1,7 @@
-from calculations import calc_shares_by_market_cap
+from calculations import calc_shares_by_market_cap, calc_index_price
 from indexes import get_sp100
 from stock_providers import read_stock_data_from_csv
+from portfolios import get_portfolio
 
 
 def main():
@@ -11,8 +12,14 @@ def main():
     stkdata = read_stock_data_from_csv('example_data/sp100_stock_data.csv')
 
     # Calc the distribution based on stock's market cap
-    result = calc_shares_by_market_cap(stkdata)
-    print(result)
+    shares_distribution = calc_shares_by_market_cap(stkdata)
+    print(shares_distribution)
+    index_distribution = calc_index_price(shares_distribution, stkdata, 45000)
+    portfolio = get_portfolio()
+
+
+def rebalance(shares_distribution, index_distribution, portfolio):
+    pass
 
 
 if __name__ == '__main__':

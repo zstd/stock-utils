@@ -28,7 +28,7 @@ def read_stock_data_from_csv(filename):
                 line_count += 1
             else:
                 stock_data = StockData(row[0], int(row[1]), float(row[2]))
-                print(f'Successfully Read [{stock_data}]')
+                # print(f'Successfully Read [{stock_data}]')
                 line_count += 1
                 result.append(stock_data)
         print(f'Processed {line_count} lines.')
