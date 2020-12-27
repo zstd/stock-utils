@@ -1,4 +1,5 @@
-
+from operator import attrgetter
+from structures import Position
 
 def calc_shares_by_market_cap(stock_data):
     total = 0
@@ -35,8 +36,8 @@ def calc_index_price(distributions, market_data, limit):
         if stocks_amount > 0:
             result[ticket] = stocks_amount
             limit_left = limit_left - stocks_amount * price
-            print(f'Processing: {ticket}, share {share}, price {price}, '
-                  f'price_limit {price_limit}, stocks_amount {stocks_amount}, limit_left {limit_left}')
+            # print(f'Processing: {ticket}, share {share}, price {price}, '
+            #       f'price_limit {price_limit}, stocks_amount {stocks_amount}, limit_left {limit_left}')
 
         else:
             print(f'Skipping {ticket} - Not able to buy at least 1 stock')
@@ -51,4 +52,31 @@ def calc_index_price(distributions, market_data, limit):
         skipped_share = skipped_share + distributions[ticket]
     print(f'skipped share {skipped_share}')
     return result
+
+
+def calc_buying_sequence(shares_distribution, index_distribution, portfolio, stock_data):
+    positions = []
+    for ticket in index_distribution:
+        position = Position(
+            ticket,
+            shares_distribution[ticket],
+            index_distribution[ticket],
+            portfolio.get_count(ticket),
+            find_price(ticket, stock_data)
+        )
+        if position.count_delta > 0:
+            positions.append(position)
+        else:
+            print(f'Skipping {position}, it has actual count')
+
+    positions = sorted(positions, key=attrgetter('price'), reverse=True)
+    positions = sorted(positions, key=attrgetter('portfolio_count'))
+    return positions
+
+
+# TODO: needs to be reworked
+def find_price(ticket, stock_data):
+    for item in stock_data:
+        if item.ticket == ticket:
+            return item.last_price
 
