@@ -1,5 +1,6 @@
 from operator import attrgetter
-from structures import Position
+from stock_core.structures import Position
+
 
 def calc_shares_by_market_cap(stock_data):
     total = 0
@@ -36,9 +37,6 @@ def calc_index_price(distributions, market_data, limit):
         if stocks_amount > 0:
             result[ticket] = stocks_amount
             limit_left = limit_left - stocks_amount * price
-            # print(f'Processing: {ticket}, share {share}, price {price}, '
-            #       f'price_limit {price_limit}, stocks_amount {stocks_amount}, limit_left {limit_left}')
-
         else:
             print(f'Skipping {ticket} - Not able to buy at least 1 stock')
             skipped.append(ticket)

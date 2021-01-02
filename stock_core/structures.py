@@ -1,5 +1,4 @@
 
-
 class Portfolio:
 
     def __init__(self, liquidity, positions):
@@ -8,6 +7,7 @@ class Portfolio:
 
     def get_count(self, ticket):
         return self.positions.get(ticket, 0)
+
 
 class Position:
     def __init__(self, ticket, index_share, target_count, portfolio_count, price):
@@ -21,4 +21,3 @@ class Position:
     def __repr__(self):
         return "Ticket {0}, price {1} index share {2}, target_count {3}, in portfolio {4}, count_delta {5}". \
             format(self.ticket, self.price, self.index_share, self.target_count, self.portfolio_count, self.count_delta)
-

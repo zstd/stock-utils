@@ -1,4 +1,4 @@
-from structures import Portfolio
+from stock_core.structures import Portfolio
 
 
 def get_portfolio():
