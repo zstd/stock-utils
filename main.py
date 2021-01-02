@@ -1,5 +1,3 @@
-from operator import attrgetter
-
 from calculations import calc_shares_by_market_cap, calc_index_price, calc_buying_sequence
 from indexes import get_sp100
 from stock_providers import read_stock_data_from_csv
