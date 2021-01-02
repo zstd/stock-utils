@@ -1,7 +1,7 @@
-from calculations import calc_shares_by_market_cap, calc_index_price, calc_buying_sequence
-from indexes import get_sp100
-from stock_providers import read_stock_data_from_csv
-from portfolios import get_portfolio
+from stock_core.calculations import calc_shares_by_market_cap, calc_index_price, calc_buying_sequence
+from stock_core.indexes import get_sp100
+from stock_core.stock_providers import read_stock_data_from_csv
+from stock_core.portfolios import get_portfolio
 
 
 def main():
